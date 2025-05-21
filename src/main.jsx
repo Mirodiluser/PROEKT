@@ -1,31 +1,53 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import Home from './pages/Home';
+import Tarjimalar from './pages/Tarjimalar';
+import Fragmentlar from './pages/Fragmentlar';
+import './index.css';  
+import PdfViewer from './components/PdfViewer';
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <PrivateRouter>
-        <App />
-      </PrivateRouter>
-    ),
+    path: '/',
+    element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
-        path: "/chat",
-        element: <Chat />,
-      }   
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/tarjimalar',
+        element: <Tarjimalar />,
+      },
+      {
+        path: '/fragmentlar',
+        element: <Fragmentlar />,
+      },
+      {
+        path: '/book/uzbek',
+        element: <PdfViewer file="/books/uzbekcha.pdf" />,
+      },
+      {
+        path: '/book/kazakh',
+        element: <PdfViewer file="/books/qozoqcha.pdf" />,
+      },
+      {
+        path: '/book/turkish',
+        element: <PdfViewer file="/books/turkcha.pdf" />,
+      },
     ],
   },
 ]);
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);

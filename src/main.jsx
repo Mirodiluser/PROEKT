@@ -7,6 +7,7 @@ import Tarjimalar from './pages/Tarjimalar';
 import Fragmentlar from './pages/Fragmentlar';
 import './index.css';  
 import PdfViewer from './components/PdfViewer';
+import SelectedTranslations from './pages/SelectedTranslations';
 
 
 const router = createBrowserRouter([
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/',
-        element: <Home />,
+        path: '/selected-translations',
+        element: <SelectedTranslations />,
       },
       {
         path: '/tarjimalar',
